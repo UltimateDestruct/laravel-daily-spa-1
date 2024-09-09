@@ -18,7 +18,8 @@ class PostResource extends JsonResource
             'id' => $this->id,
             'title' => $this->title,
             'content' => substr($this->content, 0, 5) . '...',
-            'created_at' => $this->created_at->toDateString()
+            'category' => $this->category->name,
+            'created_at' => $this->created_at->toDateString(),
         ];
     }
 }

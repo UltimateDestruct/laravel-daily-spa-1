@@ -34,7 +34,25 @@ class PostController extends Controller
 
     public function store(StorePostRequest $request)
     {
+        // We're just going to log file uploads, not actually do anything with them...
+        if($request->hasFile('thumbnail')) {
+            $filename = $request->file('thumbnail')->getClientOriginalName();
+            info($filename);
+        }
+
         $post = Post::create($request->validated());
+
+        return new PostResource($post);
+    }
+
+    public function show(Post $post)
+    {
+        return new PostResource($post);
+    }
+
+    public function update(Post $post, StorePostRequest $request) 
+    {
+        $post->update($request->validated());
 
         return new PostResource($post);
     }

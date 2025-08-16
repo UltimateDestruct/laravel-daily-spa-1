@@ -23,6 +23,14 @@
                                 Create Post
                             </router-link>
                         </div>
+                        <div class="flex items-center"> 
+                            <div class="flex">
+                                <div>
+                                    <div>Hi, {{ user.name }}</div>
+                                    <div class="text-sm text-gray-500">{{ user.email }}</div>
+                                </div>
+                            </div>
+                        </div> 
                     </div>
                 </div>
             </div>
@@ -55,8 +63,10 @@
 <script setup>
 import { computed } from 'vue';
 import { useRoute } from 'vue-router';
+import useAuth from '@/composables/auth';
 
 const route = useRoute()
+const { user } = useAuth()
 
 const currentPageTitle = computed(() => route.meta.title)
 </script>
